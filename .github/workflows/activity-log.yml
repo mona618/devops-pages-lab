@@ -1,0 +1,73 @@
+name: Validate, update activity, and deploy Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * *" # 02:17 UTC = 10:17 in Taiwan; once daily limits API requests.
+
+concurrency:
+  group: pages-main
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate site source and activity markers
+        run: python scripts/check_site.py
+
+  update-activity:
+    if: github.event_name != 'push'
+    needs: validate
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update README from GitHub activity
+        uses: TheDanniCraft/activity-log@v1
+        with:
+          GITHUB_USERNAME: mona618
+          GITHUB_TOKEN: ${{ secrets.TOKEN || github.token }}
+          EVENT_LIMIT: 8
+          HIDE_DETAILS_ON_PRIVATE_REPOS: true
+          COMMIT_MESSAGE: "docs(activity): refresh public GitHub activity [skip ci]"
+
+  deploy:
+    if: always() && needs.validate.result == 'success' && (needs.update-activity.result == 'success' || needs.update-activity.result == 'skipped')
+    needs: [validate, update-activity]
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main # Read the README commit just created by update-activity.
+      - name: Validate the exact content being published
+        run: python scripts/check_site.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
