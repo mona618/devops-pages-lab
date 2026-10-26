@@ -18,8 +18,8 @@ jobs:
   validate:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Validate site source and activity markers
@@ -32,9 +32,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Update README from GitHub activity
-        uses: TheDanniCraft/activity-log@v1
+        uses: TheDanniCraft/activity-log@130ff6ba97c30b2d272f27851db0a347b29472af # v1, pinned for reproducibility
         with:
           GITHUB_USERNAME: mona618
           GITHUB_TOKEN: ${{ secrets.TOKEN || github.token }}
@@ -54,20 +54,20 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           ref: main # Read the README commit just created by update-activity.
       - name: Validate the exact content being published
         run: python scripts/check_site.py
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ./_site
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
