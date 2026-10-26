@@ -16,7 +16,7 @@ The first workflow run will add recent public events here.
 
 ## How the page is produced
 
-1. `TheDanniCraft/activity-log` reads recent public events for `mona618` and updates the marked section above.
+1. `scripts/update_activity.py` reads recent public events for `mona618` and updates the marked section above. When GitHub's public event feed is delayed, it uses verifiable public commits from this repository.
 2. `index.md` includes this README, so the repository description and the Pages homepage use the same content.
 3. A validation job checks the markers, homepage include, and basic HTML page.
 4. A Jekyll build and the official Pages actions publish the tested site.
