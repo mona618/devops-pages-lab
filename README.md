@@ -11,14 +11,14 @@ This site turns recent public GitHub activity into a published page. GitHub Acti
 ## Recent public GitHub activity
 
 <!--START_SECTION:activity-->
+- 2026-11-03 · pushed a public commit in [mona618/opentelemetry-observability-lab](https://github.com/mona618/opentelemetry-observability-lab/commit/4b918a0ff33d4614295fc3c17dc592f777b16035)
+- 2026-11-02 · opened an issue in [mona618/opentelemetry-observability-lab](https://github.com/mona618/opentelemetry-observability-lab/issues/1)
 - 2026-10-26 · pushed a public commit in [mona618/devops-pages-lab](https://github.com/mona618/devops-pages-lab/commit/f308b96116d9cd94930751bb11e2c47334c8c498)
 - 2026-10-26 · pushed a public commit in [mona618/devops-pages-lab](https://github.com/mona618/devops-pages-lab/commit/808bd106bea0c5faf6b162e791c3401e7b8fbe69)
 - 2026-10-26 · pushed a public commit in [mona618/devops-pages-lab](https://github.com/mona618/devops-pages-lab/commit/2812cf25e82fcc0af408621b9bf353076630972f)
 - 2026-10-26 · pushed a public commit in [mona618/devops-pages-lab](https://github.com/mona618/devops-pages-lab/commit/1d3d924342f5a626483a4eed7f00043a096c76b8)
 - 2026-10-26 · pushed a public commit in [mona618/devops-pages-lab](https://github.com/mona618/devops-pages-lab/commit/4336bcfb405095bbf5b3749d2c8943cdfbf0a447)
 - 2026-10-26 · pushed a public commit in [mona618/devops-pages-lab](https://github.com/mona618/devops-pages-lab/commit/52bf73c089653b0db544f277f4cbe4c2bef5564b)
-- 2026-10-26 · created a public branch in [mona618/devops-pages-lab](https://github.com/mona618/devops-pages-lab)
-- 2026-10-26 · pushed a public commit in [mona618/devops-pages-lab](https://github.com/mona618/devops-pages-lab/commit/09a2a629c5b6b7ddff982cdbaa73824bfcfb1f9e)
 <!--END_SECTION:activity-->
 
 ## How the page is produced
